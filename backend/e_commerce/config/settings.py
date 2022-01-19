@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,8 +38,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # third-party dependencies
     # TODO: Remover debug toolbar
     "debug_toolbar",
+    # project apps
+    "apps.core",
+    "apps.pedido",
+    "apps.perfil",
+    "apps.produto",
 ]
 
 MIDDLEWARE = [
@@ -123,7 +128,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
-STATICFILES_DIRS = [BASE_DIR / "templates/static"]
+STATICFILES_DIRS = [BASE_DIR / "../frontend/templates/static"]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
