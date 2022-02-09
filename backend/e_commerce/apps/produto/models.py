@@ -1,11 +1,11 @@
 from distutils.command.upload import upload
 from pickletools import optimize
 
-from backend.e_commerce.config.settings import BASE_DIR
 from django.conf import settings
 from django.db import models
-
 from PIL import Image
+
+from config.settings import BASE_DIR
 
 
 class Produto(models.Model):
@@ -24,7 +24,7 @@ class Produto(models.Model):
 
     @staticmethod
     def resize_image(img, new_width=800):
-        img_full_path = BASE_DIR / settings.MEDIA_ROOT, img.name
+        img_full_path = (BASE_DIR / settings.MEDIA_ROOT, img.name)
         img_pil = Image.open(img_full_path)
         original_width, original_heigth = img_pil.size
         if original_width <= new_width:

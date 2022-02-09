@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 
 from pathlib import Path
+
 from django.contrib.messages import constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -66,7 +67,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["/home/ruansilva/git-repositories/ecommerce/frontend/templates"],
+        "DIRS": BASE_DIR / "templates",
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -130,7 +131,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [
-    "/home/ruansilva/git-repositories/ecommerce/frontend/templates/static"
+    BASE_DIR / "templates/static",
 ]
 
 MEDIA_URL = "/media/"
