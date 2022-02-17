@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from backend.e_commerce.apps.pedido.models import Pedido
+
+
+admin.site.register(Pedido)
