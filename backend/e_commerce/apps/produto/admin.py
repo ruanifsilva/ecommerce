@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from backend.e_commerce.apps.produto.models import Produto, Variacao
+from apps.produto.models import Produto, Variacao
 
 
 class VariacaoInLine(admin.TabularInline):
