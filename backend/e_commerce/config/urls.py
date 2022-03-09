@@ -20,10 +20,9 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("apps.core.urls", namespace="core")),
+    path("", include("apps.produto.urls", namespace="produto")),
     path("pedido/", include("apps.pedido.urls", namespace="pedido")),
     path("perfil/", include("apps.perfil.urls", namespace="perfil")),
-    path("produto/", include("apps.produto.urls", namespace="produto")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # TODO: Remover debug toolbar
