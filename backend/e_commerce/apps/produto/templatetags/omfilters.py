@@ -1,6 +1,6 @@
 from django.template import Library
-from utils import utils
 
+from utils import utils
 
 register = Library()
 

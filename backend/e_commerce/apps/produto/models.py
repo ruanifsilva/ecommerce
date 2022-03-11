@@ -1,5 +1,4 @@
 from distutils.command.upload import upload
-from utils import utils
 
 from django.conf import settings
 from django.db import models
@@ -7,6 +6,7 @@ from django.utils.text import slugify
 from PIL import Image
 
 from config.settings import BASE_DIR
+from utils import utils
 
 
 class Produto(models.Model):
