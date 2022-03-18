@@ -1,5 +1,3 @@
-from distutils.command.upload import upload
-
 from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
@@ -37,7 +35,7 @@ class Produto(models.Model):
 
     @staticmethod
     def resize_image(img, new_width=800):
-        img_full_path = BASE_DIR / settings.MEDIA_ROOT, img.name
+        img_full_path = BASE_DIR / settings.MEDIA_ROOT / img.name
         img_pil = Image.open(img_full_path)
         original_width, original_heigth = img_pil.size
 
@@ -62,7 +60,7 @@ class Produto(models.Model):
             self.resize_image(self.imagem, max_image_size)
 
     def __str__(self):
-        return f"{self.nome}"
+        return self.nome
 
 
 class Variacao(models.Model):
@@ -73,7 +71,7 @@ class Variacao(models.Model):
     estoque = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return f"{self.nome}" or f"{self.produto.nome}"
+        return self.nome or self.produto.nome
 
     class Meta:
         verbose_name = "Variação"
