@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third-party dependencies
     # TODO: Remover debug toolbar
+    "crispy_forms",
     "debug_toolbar",
     # project apps
     "apps.core",
@@ -49,6 +50,8 @@ INSTALLED_APPS = [
     "apps.perfil",
     "apps.produto",
 ]
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
