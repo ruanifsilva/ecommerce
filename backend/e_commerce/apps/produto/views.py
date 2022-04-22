@@ -5,8 +5,8 @@ from django.views import View
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
-from apps.produto import models
 from apps.perfil.models import Perfil
+from apps.produto import models
 
 
 class ListaProdutos(ListView):

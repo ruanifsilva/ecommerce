@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.pedido.models import Pedido, ItemPedido
+from apps.pedido.models import ItemPedido, Pedido
 
 
 class ItemPedidoInLine(admin.TabularInline):

@@ -1,10 +1,11 @@
+from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import ListView
-from django.contrib import messages
+
+from apps.pedido.models import ItemPedido, Pedido
 from apps.produto.models import Variacao
-from apps.pedido.models import Pedido, ItemPedido
 from utils import utils
 
 

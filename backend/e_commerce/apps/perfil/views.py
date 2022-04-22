@@ -1,12 +1,12 @@
 import copy
 
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from django.views.generic import ListView
-from django.contrib import messages
 
 from apps.perfil.forms import PerfilForm, UserForm
 from apps.perfil.models import Perfil
