@@ -11,7 +11,8 @@
         <h3>Login</h3>
         <p>Faça seu login para realizar compras e visualizar seu histórico.</p>
         <br>
-        <form>
+        <form method="POST" action="{% url 'perfil:login' %}">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="InputUsuario1">Usuário</label>
                 <input type="text" name="username" class="form-control" id="InputUsuario1"

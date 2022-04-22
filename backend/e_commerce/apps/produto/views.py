@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render, reverse
@@ -8,6 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
 from apps.produto import models
+from apps.perfil.models import Perfil
 
 
 class ListaProdutos(ListView):
@@ -142,4 +141,24 @@ class Carrinho(View):
 
 
 class ResumoDaCompra(View):
-    pass
+    def get(self, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("perfil:criar")
+
+        perfil = Perfil.objects.filter(usuario=self.request.user).exists()
+
+        if not perfil:
+            messages.error(
+                self.request,
+                "Você precisa preencher os campos do perfil para realizar a compra.",
+            )
+            return redirect("perfil:criar")
+
+        if not self.request.session.get("carrinho"):
+            return redirect("produto:lista")
+
+        contexto = {
+            "usuario": self.request.user,
+            "carrinho": self.request.session["carrinho"],
+        }
+        return render(self.request, "produto/resumodacompra.html", contexto)
