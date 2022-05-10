@@ -1,5 +1,5 @@
-from distutils.log import error
 import re
+from distutils.log import error
 
 from django.contrib.auth.models import User
 from django.db import models
