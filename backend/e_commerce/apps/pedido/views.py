@@ -1,15 +1,36 @@
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from apps.pedido.models import ItemPedido, Pedido
 from apps.produto.models import Variacao
 from utils import utils
 
 
-class Pagar(View):
+class DispatchLoginRequiredMixin(View):
+    def dispatch(self, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect("perfil:criar")
+
+        return super().dispatch(*args, **kwargs)
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super().get_queryset(*args, **kwargs)
+        qs = qs.filter(user=self.request.user)
+        return qs
+
+
+class Pagar(DispatchLoginRequiredMixin, DetailView):
+    template_name = "pedido/pagar.html"
+    model = Pedido
+    pk_url_kwarg = "pk"
+    context_object_name = "pedido"
+
+
+class SalvarPedido(View):
     template_name = "pedido/pagar.html"
 
     def get(self, *args, **kwargs):
@@ -85,17 +106,19 @@ class Pagar(View):
         )
 
         del self.request.session["carrinho"]
-        return redirect("pedido:lista")
+        return redirect(reverse("pedido:pagar", kwargs={"pk": pedido.pk}))
 
 
-class SalvarPedido(View):
-    pass
+class Detalhe(DispatchLoginRequiredMixin, DetailView):
+    model = Pedido
+    context_object_name = "pedido"
+    template_name = "pedido/detalhe.html"
+    pk_url_kwarg = "pk"
 
 
-class Detalhe(View):
-    pass
-
-
-class Lista(View):
-    def get(self, *args, **kwargs):
-        return HttpResponse("lista")
+class Lista(DispatchLoginRequiredMixin, ListView):
+    model = Pedido
+    context_object_name = "pedidos"
+    template_name = "pedido/lista.html"
+    paginate_by = 10
+    ordering = ["-id"]

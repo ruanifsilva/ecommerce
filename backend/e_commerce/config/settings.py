@@ -41,9 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # third-party dependencies
-    # TODO: Remover debug toolbar
     "crispy_forms",
-    "debug_toolbar",
     # project apps
     "apps.core",
     "apps.pedido",
@@ -61,8 +59,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # TODO: Remover debug toolbar
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -165,11 +161,3 @@ SESSION_SAVE_EVERY_REQUEST = False
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# TODO: Remover debug toolbar
-INTERNAL_IPS = [
-    # ...
-    "127.0.0.1"
-    # ...
-]

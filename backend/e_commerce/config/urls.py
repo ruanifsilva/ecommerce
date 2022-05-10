@@ -24,12 +24,3 @@ urlpatterns = [
     path("pedido/", include("apps.pedido.urls", namespace="pedido")),
     path("perfil/", include("apps.perfil.urls", namespace="perfil")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# TODO: Remover debug toolbar
-
-if settings.DEBUG:
-    import debug_toolbar
-
-    urlpatterns = [
-        path("__debug__/", include(debug_toolbar.urls)),
-    ] + urlpatterns

@@ -3,11 +3,11 @@
 
 <head>
     {% include 'parciais/_head.html' %}
-    <title>{% block titulo %}E-commerce{% endblock %}</title>
+    <title>{% block titulo %}{% endblock %}E-commerce</title>
 </head>
 
 <body>
-    
+
     {% include 'parciais/_nav.html' %}
 
     <main class="container mt-4 mb-4">
@@ -15,7 +15,7 @@
         {% block conteudo %}{% endblock %}
     </main>
 
-{% include 'parciais/_footer.html' %}
+    {% include 'parciais/_footer.html' %}
 </body>
 
 </html>
